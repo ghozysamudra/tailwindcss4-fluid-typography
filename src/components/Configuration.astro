@@ -1,9 +1,21 @@
 ---
+import Section from "./ui/Section.astro";
+import Container from "./ui/Container.astro";
+import Card from "./ui/Card.astro";
+import Button from "./ui/Button.astro";
+
+const numberInputClass =
+  "w-full rounded-md border border-[color:var(--line)] bg-[color:var(--surface)] px-2 py-1 font-['IBM_Plex_Mono'] text-body-sm sm:w-28";
+const helpWrapClass = "group relative inline-flex shrink-0";
+const helpIconClass =
+  "size-[1.15rem] cursor-help rounded-full border border-[color:var(--line)] bg-[color:var(--bg-muted)] p-0 text-[0.72rem] leading-none text-[color:var(--text-muted)]";
+const helpPopupClass =
+  "pointer-events-none absolute left-1/2 top-[calc(100%+0.35rem)] z-20 w-[min(16rem,70vw)] -translate-x-1/2 rounded-lg border border-[color:var(--line)] bg-[color:var(--surface)] px-2 py-2 text-caption text-[color:var(--text)] opacity-0 shadow-[0_6px_18px_rgba(0,0,0,0.14)] transition group-hover:opacity-100 group-focus-within:opacity-100";
 
 ---
 
-<section class="section-pad" id="configuration">
-  <div class="container-shell reveal">
+<Section id="configuration">
+  <Container class="opacity-0 translate-y-5 transition duration-500 [will-change:transform,opacity]" data-reveal>
     <h2 class="text-h2 m-0">Configuration Generator</h2>
     <p class="text-body mt-2 text-[color:var(--text-muted)]">
       Tune your viewport range, base sizes, and scale ratios. The preview
@@ -11,27 +23,12 @@
     </p>
 
     <div class="mt-5 grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
-      <form
-        class="card flex flex-col gap-4 overflow-visible p-5"
-        data-config-form
-      >
+      <form class="rounded-2xl border border-[color:var(--line)] bg-[color:var(--surface)] flex flex-col gap-4 overflow-visible p-5" data-config-form>
         <p class="text-body-sm m-0">Presets</p>
         <div class="flex flex-wrap gap-2">
-          <button
-            type="button"
-            class="btn btn-secondary text-body-sm"
-            data-preset="balanced">Balanced</button
-          >
-          <button
-            type="button"
-            class="btn btn-secondary text-body-sm"
-            data-preset="editorial">Editorial</button
-          >
-          <button
-            type="button"
-            class="btn btn-secondary text-body-sm"
-            data-preset="dramatic">Dramatic</button
-          >
+          <Button type="button" class="text-body-sm" data-preset="balanced">Balanced</Button>
+          <Button type="button" class="text-body-sm" data-preset="editorial">Editorial</Button>
+          <Button type="button" class="text-body-sm" data-preset="dramatic">Dramatic</Button>
         </div>
 
         <div class="grid gap-3 xl:grid-cols-2">
@@ -43,16 +40,16 @@
             <div class="grid gap-2">
               <div class="flex items-center gap-2">
                 <label class="text-body-sm"
-                  >Min viewport <span class="mono" data-v="min-width">360</span
+                  >Min viewport <span class="font-['IBM_Plex_Mono']" data-v="min-width">360</span
                   ></label
                 >
-                <span class="help-wrap">
+                <span class={helpWrapClass}>
                   <button
                     type="button"
-                    class="help-icon"
+                    class={helpIconClass}
                     aria-label="About min viewport">?</button
                   >
-                  <span class="help-popup text-caption"
+                  <span class={helpPopupClass}
                     >Smallest viewport width where fluid scaling starts (usually
                     320-390px).</span
                   >
@@ -76,7 +73,7 @@
                   step="10"
                   data-field="min-width"
                   data-role="number"
-                  class="w-full rounded-md border border-[color:var(--line)] bg-[color:var(--surface)] px-2 py-1 mono text-body-sm sm:w-28"
+                  class={numberInputClass}
                 />
               </div>
             </div>
@@ -84,16 +81,16 @@
             <div class="grid gap-2">
               <div class="flex items-center gap-2">
                 <label class="text-body-sm"
-                  >Min base <span class="mono" data-v="min-base">16</span
+                  >Min base <span class="font-['IBM_Plex_Mono']" data-v="min-base">16</span
                   ></label
                 >
-                <span class="help-wrap">
+                <span class={helpWrapClass}>
                   <button
                     type="button"
-                    class="help-icon"
+                    class={helpIconClass}
                     aria-label="About min base">?</button
                   >
-                  <span class="help-popup text-caption"
+                  <span class={helpPopupClass}
                     >Body font size at min viewport. Common range is 15-17px.</span
                   >
                 </span>
@@ -116,7 +113,7 @@
                   step="1"
                   data-field="min-base"
                   data-role="number"
-                  class="w-full rounded-md border border-[color:var(--line)] bg-[color:var(--surface)] px-2 py-1 mono text-body-sm sm:w-28"
+                  class={numberInputClass}
                 />
               </div>
             </div>
@@ -124,16 +121,16 @@
             <div class="grid gap-2">
               <div class="flex items-center gap-2">
                 <label class="text-body-sm"
-                  >Min ratio <span class="mono" data-v="min-ratio">1.20</span
+                  >Min ratio <span class="font-['IBM_Plex_Mono']" data-v="min-ratio">1.20</span
                   ></label
                 >
-                <span class="help-wrap">
+                <span class={helpWrapClass}>
                   <button
                     type="button"
-                    class="help-icon"
+                    class={helpIconClass}
                     aria-label="About min ratio">?</button
                   >
-                  <span class="help-popup text-caption"
+                  <span class={helpPopupClass}
                     >Scale ratio at min viewport. Lower ratios create subtler
                     hierarchy.</span
                   >
@@ -157,7 +154,7 @@
                   step="0.01"
                   data-field="min-ratio"
                   data-role="number"
-                  class="w-full rounded-md border border-[color:var(--line)] bg-[color:var(--surface)] px-2 py-1 mono text-body-sm sm:w-28"
+                  class={numberInputClass}
                 />
               </div>
             </div>
@@ -171,16 +168,16 @@
             <div class="grid gap-2">
               <div class="flex items-center gap-2">
                 <label class="text-body-sm"
-                  >Max viewport <span class="mono" data-v="max-width">1280</span
+                  >Max viewport <span class="font-['IBM_Plex_Mono']" data-v="max-width">1280</span
                   ></label
                 >
-                <span class="help-wrap">
+                <span class={helpWrapClass}>
                   <button
                     type="button"
-                    class="help-icon"
+                    class={helpIconClass}
                     aria-label="About max viewport">?</button
                   >
-                  <span class="help-popup text-caption"
+                  <span class={helpPopupClass}
                     >Largest viewport where scaling stops. Wider screens stay at
                     max sizes.</span
                   >
@@ -204,7 +201,7 @@
                   step="16"
                   data-field="max-width"
                   data-role="number"
-                  class="w-full rounded-md border border-[color:var(--line)] bg-[color:var(--surface)] px-2 py-1 mono text-body-sm sm:w-28"
+                  class={numberInputClass}
                 />
               </div>
             </div>
@@ -212,16 +209,16 @@
             <div class="grid gap-2">
               <div class="flex items-center gap-2">
                 <label class="text-body-sm"
-                  >Max base <span class="mono" data-v="max-base">18</span
+                  >Max base <span class="font-['IBM_Plex_Mono']" data-v="max-base">18</span
                   ></label
                 >
-                <span class="help-wrap">
+                <span class={helpWrapClass}>
                   <button
                     type="button"
-                    class="help-icon"
+                    class={helpIconClass}
                     aria-label="About max base">?</button
                   >
-                  <span class="help-popup text-caption"
+                  <span class={helpPopupClass}
                     >Body font size at max viewport. Typical desktop values:
                     17-20px.</span
                   >
@@ -245,7 +242,7 @@
                   step="1"
                   data-field="max-base"
                   data-role="number"
-                  class="w-full rounded-md border border-[color:var(--line)] bg-[color:var(--surface)] px-2 py-1 mono text-body-sm sm:w-28"
+                  class={numberInputClass}
                 />
               </div>
             </div>
@@ -253,16 +250,16 @@
             <div class="grid gap-2">
               <div class="flex items-center gap-2">
                 <label class="text-body-sm"
-                  >Max ratio <span class="mono" data-v="max-ratio">1.25</span
+                  >Max ratio <span class="font-['IBM_Plex_Mono']" data-v="max-ratio">1.25</span
                   ></label
                 >
-                <span class="help-wrap">
+                <span class={helpWrapClass}>
                   <button
                     type="button"
-                    class="help-icon"
+                    class={helpIconClass}
                     aria-label="About max ratio">?</button
                   >
-                  <span class="help-popup text-caption"
+                  <span class={helpPopupClass}
                     >Scale ratio at desktop. Higher values create more dramatic
                     headings.</span
                   >
@@ -286,7 +283,7 @@
                   step="0.01"
                   data-field="max-ratio"
                   data-role="number"
-                  class="w-full rounded-md border border-[color:var(--line)] bg-[color:var(--surface)] px-2 py-1 mono text-body-sm sm:w-28"
+                  class={numberInputClass}
                 />
               </div>
             </div>
@@ -294,21 +291,17 @@
         </div>
 
         <div class="mt-2 flex flex-wrap gap-2">
-          <button
-            type="reset"
-            class="btn btn-secondary text-body-sm"
-            data-config-reset>Reset values</button
-          >
+          <Button type="reset" class="text-body-sm" data-config-reset>Reset values</Button>
         </div>
       </form>
 
       <div class="grid gap-4">
-        <article class="card p-5">
+        <Card class="p-5">
           <div class="mb-4 flex items-center justify-between gap-3">
             <h3 class="text-h4 m-0">Live Preview + Generated CSS</h3>
             <button
               type="button"
-              class="copy-button mono text-caption"
+              class="rounded-md border border-[color:var(--line)] bg-[color:var(--bg)] px-2 py-1 font-['IBM_Plex_Mono'] text-caption text-[color:var(--text)] transition [&[data-copied='true']]:border-[color:var(--ok)] [&[data-copied='true']]:text-[color:var(--ok)]"
               data-copy-target="generated-config"
             >
               Copy
@@ -319,7 +312,7 @@
           </p>
           <pre
             id="generated-config"
-            class="mono text-caption mt-4 overflow-x-auto rounded-lg border border-[color:var(--line)] p-3">
+            class="mt-4 overflow-x-auto rounded-lg border border-[color:var(--line)] p-3 font-['IBM_Plex_Mono'] text-caption">
           </pre>
 
           <div
@@ -333,18 +326,18 @@
                 <tr
                   class="border-b border-[color:var(--line)] bg-[color:var(--bg-muted)]"
                 >
-                  <th class="mono text-caption p-2">Variable</th>
-                  <th class="mono text-caption p-2">Min</th>
-                  <th class="mono text-caption p-2">Max</th>
+                  <th class="font-['IBM_Plex_Mono'] text-caption p-2">Variable</th>
+                  <th class="font-['IBM_Plex_Mono'] text-caption p-2">Min</th>
+                  <th class="font-['IBM_Plex_Mono'] text-caption p-2">Max</th>
                 </tr>
               </thead>
               <tbody data-size-preview></tbody>
             </table>
           </div>
-        </article>
+        </Card>
       </div>
     </div>
-  </div>
+  </Container>
 
   <script>
     const form = document.querySelector("[data-config-form]");
@@ -512,9 +505,9 @@
             ? "border-b border-[color:var(--line)] bg-[color:var(--accent-soft)] last:border-b-0"
             : "border-b border-[color:var(--line)] last:border-b-0";
           row.innerHTML = `
-            <td class="mono text-caption p-2 ${isBase ? "font-bold" : ""}">${name}</td>
-            <td class="mono text-caption p-2 ${isBase ? "font-bold" : ""}">${min.toFixed(2)}px</td>
-            <td class="mono text-caption p-2 ${isBase ? "font-bold" : ""}">${max.toFixed(2)}px</td>
+            <td class="font-['IBM_Plex_Mono'] text-caption p-2 ${isBase ? "font-bold" : ""}">${name}</td>
+            <td class="font-['IBM_Plex_Mono'] text-caption p-2 ${isBase ? "font-bold" : ""}">${min.toFixed(2)}px</td>
+            <td class="font-['IBM_Plex_Mono'] text-caption p-2 ${isBase ? "font-bold" : ""}">${max.toFixed(2)}px</td>
           `;
           sizePreview.append(row);
         });
@@ -568,48 +561,4 @@
     });
   </script>
 
-  <style>
-    .help-wrap {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      flex-shrink: 0;
-    }
-
-    .help-icon {
-      width: 1.15rem;
-      height: 1.15rem;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: var(--bg-muted);
-      color: var(--text-muted);
-      font-size: 0.72rem;
-      line-height: 1;
-      padding: 0;
-      cursor: help;
-    }
-
-    .help-popup {
-      position: absolute;
-      left: 50%;
-      top: calc(100% + 0.35rem);
-      z-index: 20;
-      width: min(16rem, 70vw);
-      transform: translateX(-50%);
-      border: 1px solid var(--line);
-      border-radius: 0.5rem;
-      padding: 0.45rem 0.55rem;
-      color: var(--text);
-      background: var(--surface);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 120ms ease;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
-    }
-
-    .help-wrap:hover .help-popup,
-    .help-wrap:focus-within .help-popup {
-      opacity: 1;
-    }
-  </style>
-</section>
+</Section>

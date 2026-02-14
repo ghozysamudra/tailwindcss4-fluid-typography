@@ -1,4 +1,8 @@
 ---
+import Section from "./ui/Section.astro";
+import Container from "./ui/Container.astro";
+import Card from "./ui/Card.astro";
+
 const faqs = [
   ["Does this work in all modern browsers?", "Yes. clamp(), custom properties, and modern selectors are widely supported in evergreen browsers."],
   ["Will this hurt performance?", "No. This system is CSS-only and avoids runtime JavaScript for typography calculations."],
@@ -11,18 +15,20 @@ const faqs = [
 ];
 ---
 
-<section class="section-pad" id="faq">
-  <div class="container-shell reveal">
-    <h2 class="text-h2 m-0">FAQ</h2>
+<Section id="faq">
+  <Container class="opacity-0 translate-y-5 transition duration-500 [will-change:transform,opacity]" data-reveal>
+    <h2 class="m-0 text-h2">FAQ</h2>
     <div class="mt-5 grid gap-3">
       {
         faqs.map(([question, answer]) => (
-          <details class="card p-4">
-            <summary class="text-h4 cursor-pointer">{question}</summary>
-            <p class="text-body mt-3 mb-0 text-[color:var(--text-muted)]">{answer}</p>
-          </details>
+          <Card>
+            <details class="p-4">
+              <summary class="cursor-pointer text-h4">{question}</summary>
+              <p class="mb-0 mt-3 text-body text-[color:var(--text-muted)]">{answer}</p>
+            </details>
+          </Card>
         ))
       }
     </div>
-  </div>
-</section>
+  </Container>
+</Section>

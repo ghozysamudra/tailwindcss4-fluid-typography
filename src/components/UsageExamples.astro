@@ -1,4 +1,8 @@
 ---
+import Section from "./ui/Section.astro";
+import Container from "./ui/Container.astro";
+import Card from "./ui/Card.astro";
+
 const examples = [
   {
     id: "blog",
@@ -47,19 +51,19 @@ const examples = [
 ];
 ---
 
-<section class="section-pad" id="usage">
-  <div class="container-shell reveal">
-    <h2 class="text-h2 m-0">Usage Examples</h2>
-    <p class="text-body mt-2 text-[color:var(--text-muted)]">
+<Section id="usage">
+  <Container class="opacity-0 translate-y-5 transition duration-500 [will-change:transform,opacity]" data-reveal>
+    <h2 class="m-0 text-h2">Usage Examples</h2>
+    <p class="mt-2 text-body text-[color:var(--text-muted)]">
       Switch examples to inspect practical implementation patterns with copy-ready snippets.
     </p>
 
-    <div class="mt-5 card overflow-hidden p-5">
+    <Card class="mt-5 overflow-hidden p-5">
       <div class="mb-4 flex flex-wrap gap-2" role="tablist" aria-label="Usage tabs">
         {examples.map((example, idx) => (
           <button
             type="button"
-            class="btn btn-secondary text-body-sm whitespace-nowrap"
+            class="whitespace-nowrap rounded-full border border-[color:var(--line)] bg-[color:var(--surface)] px-4 py-2 text-body-sm text-[color:var(--text)] transition hover:bg-[color:var(--bg-muted)] aria-selected:border-[color:var(--accent)] aria-selected:bg-[color:var(--accent)] aria-selected:text-white"
             role="tab"
             aria-selected={idx === 0 ? "true" : "false"}
             data-example-tab={example.id}
@@ -71,22 +75,22 @@ const examples = [
 
       {examples.map((example, idx) => (
         <article class:list={["grid gap-4 md:grid-cols-2", idx === 0 ? "" : "hidden"]} data-example-panel={example.id} role="tabpanel">
-          <div class="card min-w-0 overflow-hidden p-5">
-            <p class="text-h6 mono text-[color:var(--text-muted)]">Preview</p>
-            <h3 class="text-h2 mt-2 break-words">{example.previewTitle}</h3>
-            <p class="text-body break-words text-[color:var(--text-muted)]">{example.previewBody}</p>
-          </div>
-          <div class="card min-w-0 overflow-hidden p-5">
+          <Card class="min-w-0 overflow-hidden p-5">
+            <p class="font-['IBM_Plex_Mono'] text-h6 text-[color:var(--text-muted)]">Preview</p>
+            <h3 class="mt-2 break-words text-h2">{example.previewTitle}</h3>
+            <p class="break-words text-body text-[color:var(--text-muted)]">{example.previewBody}</p>
+          </Card>
+          <Card class="min-w-0 overflow-hidden p-5">
             <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
-              <p class="text-h6 mono m-0 text-[color:var(--text-muted)]">Code</p>
-              <button type="button" class="copy-button mono text-caption" data-copy={example.code}>Copy</button>
+              <p class="m-0 font-['IBM_Plex_Mono'] text-h6 text-[color:var(--text-muted)]">Code</p>
+              <button type="button" class="rounded-md border border-[color:var(--line)] bg-[color:var(--bg)] px-2 py-1 font-['IBM_Plex_Mono'] text-caption text-[color:var(--text)] transition [&[data-copied='true']]:border-[color:var(--ok)] [&[data-copied='true']]:text-[color:var(--ok)]" data-copy={example.code}>Copy</button>
             </div>
-            <pre class="mono text-body-sm m-0 w-full max-w-full overflow-x-auto rounded-lg bg-[color:var(--bg-muted)] p-3">{example.code}</pre>
-          </div>
+            <pre class="m-0 w-full max-w-full overflow-x-auto rounded-lg bg-[color:var(--bg-muted)] p-3 font-['IBM_Plex_Mono'] text-body-sm">{example.code}</pre>
+          </Card>
         </article>
       ))}
-    </div>
-  </div>
+    </Card>
+  </Container>
 
   <script>
     const tabs = Array.from(document.querySelectorAll("[data-example-tab]"));
@@ -100,18 +104,14 @@ const examples = [
 
         tabs.forEach((item) => {
           if (!(item instanceof HTMLButtonElement)) return;
-          const isActive = item.dataset.exampleTab === id;
-          item.setAttribute("aria-selected", String(isActive));
-          item.classList.toggle("btn-primary", isActive);
-          item.classList.toggle("btn-secondary", !isActive);
+          item.setAttribute("aria-selected", String(item.dataset.exampleTab === id));
         });
 
         panels.forEach((panel) => {
           if (!(panel instanceof HTMLElement)) return;
-          const show = panel.dataset.examplePanel === id;
-          panel.classList.toggle("hidden", !show);
+          panel.classList.toggle("hidden", panel.dataset.examplePanel !== id);
         });
       });
     });
   </script>
-</section>
+</Section>

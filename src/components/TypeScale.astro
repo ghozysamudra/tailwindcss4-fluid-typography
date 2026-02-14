@@ -1,4 +1,8 @@
 ---
+import Section from "./ui/Section.astro";
+import Container from "./ui/Container.astro";
+import Card from "./ui/Card.astro";
+
 const tokens = [
   ["text-h1", "Primary page heading"],
   ["text-h2", "Section heading"],
@@ -11,16 +15,16 @@ const tokens = [
 ] as const;
 ---
 
-<section class="section-pad" id="type-scale">
-  <div class="container-shell reveal">
+<Section id="type-scale">
+  <Container class="opacity-0 translate-y-5 transition duration-500 [will-change:transform,opacity]" data-reveal>
     <div class="mb-5 flex items-end justify-between gap-4">
       <h2 class="text-h2 m-0">Live Demo: Interactive Type Scale</h2>
-      <p class="text-caption mono m-0">Drag to simulate viewport</p>
+      <p class="m-0 font-['IBM_Plex_Mono'] text-caption">Drag to simulate viewport</p>
     </div>
 
-    <div class="card p-4 md:p-6">
+    <Card class="p-4 md:p-6">
       <div class="mb-4 flex flex-wrap items-center gap-3">
-        <label for="viewport-control" class="text-body-sm mono">Viewport</label>
+        <label for="viewport-control" class="font-['IBM_Plex_Mono'] text-body-sm">Viewport</label>
         <input
           id="viewport-control"
           type="range"
@@ -30,7 +34,7 @@ const tokens = [
           class="w-[min(32rem,85vw)]"
           data-viewport-control
         />
-        <output class="text-body-sm mono" data-viewport-output>920px</output>
+        <output class="font-['IBM_Plex_Mono'] text-body-sm" data-viewport-output>920px</output>
       </div>
 
       <div class="w-full" data-resize-shell>
@@ -38,7 +42,7 @@ const tokens = [
         <div class="bg-[color:var(--surface)] p-4 md:p-6" data-size-stage>
           {tokens.map(([token, description]) => (
             <article class="border-b border-[color:var(--line)] py-3 last:border-b-0">
-              <p class="mono text-caption m-0 text-[color:var(--text-muted)]">
+              <p class="m-0 font-['IBM_Plex_Mono'] text-caption text-[color:var(--text-muted)]">
                 .{token} <span data-token-size={token} class="ml-2">0px</span>
               </p>
               <p class:list={[token, "m-0"]} data-token-sample={token}>The quick brown fox scales with confidence.</p>
@@ -48,8 +52,8 @@ const tokens = [
         </div>
       </div>
       </div>
-    </div>
-  </div>
+    </Card>
+  </Container>
 
   <script>
     const slider = document.querySelector("[data-viewport-control]");
@@ -136,4 +140,4 @@ const tokens = [
     window.addEventListener("resize", update);
     update();
   </script>
-</section>
+</Section>

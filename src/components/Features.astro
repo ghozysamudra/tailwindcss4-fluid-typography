@@ -1,4 +1,8 @@
 ---
+import Section from "./ui/Section.astro";
+import Container from "./ui/Container.astro";
+import Card from "./ui/Card.astro";
+
 const features = [
   ["Fluid scaling", "Type transitions continuously between viewport ranges."],
   ["Semantic utilities", "Use .text-h1 through .text-caption on any element."],
@@ -9,19 +13,19 @@ const features = [
 ];
 ---
 
-<section class="section-pad" id="features">
-  <div class="container-shell reveal">
-    <h2 class="text-h2 m-0">Key Features</h2>
+<Section id="features">
+  <Container class="opacity-0 translate-y-5 transition duration-500 [will-change:transform,opacity]" data-reveal>
+    <h2 class="m-0 text-h2">Key Features</h2>
     <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {
         features.map(([title, body], index) => (
-          <article class="card p-5 transition-transform duration-200 hover:-translate-y-1">
-            <p class="mono text-caption m-0 text-[color:var(--accent)]">0{index + 1}</p>
-            <h3 class="text-h3 mt-2 mb-2">{title}</h3>
-            <p class="text-body m-0 text-[color:var(--text-muted)]">{body}</p>
-          </article>
+          <Card class="p-5 transition-transform duration-200 hover:-translate-y-1">
+            <p class="m-0 font-['IBM_Plex_Mono'] text-caption text-[color:var(--accent)]">0{index + 1}</p>
+            <h3 class="mb-2 mt-2 text-h3">{title}</h3>
+            <p class="m-0 text-body text-[color:var(--text-muted)]">{body}</p>
+          </Card>
         ))
       }
     </div>
-  </div>
-</section>
+  </Container>
+</Section>

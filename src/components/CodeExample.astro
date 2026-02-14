@@ -1,5 +1,6 @@
 ---
 import { Code } from "astro:components";
+import Card from "./ui/Card.astro";
 
 interface Props {
   code: string;
@@ -10,10 +11,10 @@ interface Props {
 const { code, lang = "css", title = "Example" } = Astro.props;
 ---
 
-<section class="card p-4 md:p-6">
+<Card class="p-4 md:p-6">
   <div class="mb-3 flex items-center justify-between gap-3">
-    <p class="text-h6 mono m-0 text-[color:var(--text-muted)]">{title}</p>
-    <button class="copy-button mono text-caption" type="button" data-copy={code}>Copy</button>
+    <p class="m-0 font-['IBM_Plex_Mono'] text-h6 text-[color:var(--text-muted)]">{title}</p>
+    <button class="rounded-md border border-[color:var(--line)] bg-[color:var(--bg)] px-2 py-1 font-['IBM_Plex_Mono'] text-caption text-[color:var(--text)] transition [&[data-copied='true']]:border-[color:var(--ok)] [&[data-copied='true']]:text-[color:var(--ok)]" type="button" data-copy={code}>Copy</button>
   </div>
   <Code code={code} lang={lang} />
-</section>
+</Card>

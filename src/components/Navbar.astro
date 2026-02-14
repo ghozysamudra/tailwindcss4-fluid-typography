@@ -1,46 +1,57 @@
-<nav class="floating-nav" aria-label="Primary">
-  <div class="floating-nav-inner">
-    <a href="#" class="text-body-sm mono nav-brand">Fluid Type</a>
-    <div class="nav-links">
-      <a href="#type-scale" class="text-body-sm">Demo</a>
-      <a href="#configuration" class="text-body-sm">Config</a>
-      <a href="#usage" class="text-body-sm">Examples</a>
+---
+import Container from "./ui/Container.astro";
+import Button from "./ui/Button.astro";
+---
+
+<nav class="fixed inset-x-0 top-4 z-40 px-3" aria-label="Primary" data-nav-root>
+  <Container>
+    <div class="flex items-center justify-between gap-3 rounded-full border border-[color:var(--line)] bg-[color:var(--surface)]/90 px-3 py-2 backdrop-blur-md">
+      <a href="#" class="px-2 font-['IBM_Plex_Mono'] text-body-sm no-underline">Fluid Type</a>
+
+      <div class="hidden items-center gap-3 md:flex">
+        <a href="#type-scale" class="text-body-sm text-[color:var(--text-muted)] no-underline">Demo</a>
+        <a href="#configuration" class="text-body-sm text-[color:var(--text-muted)] no-underline">Config</a>
+        <a href="#usage" class="text-body-sm text-[color:var(--text-muted)] no-underline">Examples</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <Button
+          class="h-8 w-8 !px-0 !py-0 text-body-sm"
+          data-theme-toggle
+          aria-pressed="false"
+          aria-label="Switch to dark theme"
+          title="Switch to dark theme"
+        >
+          <span aria-hidden="true" data-theme-icon>☾</span>
+        </Button>
+        <Button href="#getting-started" variant="primary" class="text-body-sm !px-3 !py-2">Getting Started</Button>
+        <Button
+          class="h-8 w-8 !px-0 !py-0 text-body-sm md:hidden"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav-menu"
+          aria-label="Open menu"
+        >
+          <span aria-hidden="true">☰</span>
+        </Button>
+      </div>
     </div>
 
-    <div class="nav-actions">
-      <button
-        type="button"
-        class="btn btn-secondary text-body-sm nav-theme nav-theme-icon"
-        data-theme-toggle
-        aria-pressed="false"
-        aria-label="Switch to dark theme"
-        title="Switch to dark theme"
-      >
-        <span aria-hidden="true" data-theme-icon>☾</span>
-      </button>
-      <a href="#getting-started" class="btn btn-primary text-body-sm nav-cta">Getting Started</a>
-      <button
-        type="button"
-        class="btn btn-secondary text-body-sm nav-menu-btn"
-        data-nav-toggle
-        aria-expanded="false"
-        aria-controls="mobile-nav-menu"
-        aria-label="Open menu"
-      >
-        <span aria-hidden="true">☰</span>
-      </button>
+    <div
+      id="mobile-nav-menu"
+      class="mt-2 grid gap-1 rounded-xl border border-[color:var(--line)] bg-[color:var(--surface)]/95 p-2 backdrop-blur-md md:hidden"
+      data-nav-menu
+      hidden
+    >
+      <a href="#type-scale" class="rounded-lg px-2 py-2 text-body no-underline hover:bg-[color:var(--bg-muted)]">Demo</a>
+      <a href="#configuration" class="rounded-lg px-2 py-2 text-body no-underline hover:bg-[color:var(--bg-muted)]">Config</a>
+      <a href="#usage" class="rounded-lg px-2 py-2 text-body no-underline hover:bg-[color:var(--bg-muted)]">Examples</a>
+      <a href="#faq" class="rounded-lg px-2 py-2 text-body no-underline hover:bg-[color:var(--bg-muted)]">FAQ</a>
     </div>
-  </div>
-
-  <div id="mobile-nav-menu" class="mobile-nav-menu card" data-nav-menu hidden>
-    <a href="#type-scale" class="text-body">Demo</a>
-    <a href="#configuration" class="text-body">Config</a>
-    <a href="#usage" class="text-body">Examples</a>
-    <a href="#faq" class="text-body">FAQ</a>
-  </div>
+  </Container>
 
   <script>
-    const nav = document.querySelector(".floating-nav");
+    const nav = document.querySelector("[data-nav-root]");
     const toggle = nav?.querySelector("[data-nav-toggle]");
     const menu = nav?.querySelector("[data-nav-menu]");
 
@@ -62,7 +73,7 @@
     });
 
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 760) closeMenu();
+      if (window.innerWidth >= 768) closeMenu();
     });
   </script>
 </nav>

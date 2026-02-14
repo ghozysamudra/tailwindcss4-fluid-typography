@@ -1,19 +1,24 @@
-<footer class="section-pad pt-8">
-  <div class="container-shell">
+---
+import Section from "./ui/Section.astro";
+import Container from "./ui/Container.astro";
+---
+
+<Section class="pt-8">
+  <Container>
     <div class="grid gap-4 border-t border-[color:var(--line)] pt-6 md:grid-cols-2">
       <div>
-        <p class="text-h4 mt-0 mb-2">Tailwind Fluid Typography</p>
-        <p class="text-body-sm m-0 text-[color:var(--text-muted)]">
+        <p class="mb-2 mt-0 text-h4">Tailwind Fluid Typography</p>
+        <p class="m-0 text-body-sm text-[color:var(--text-muted)]">
           Built for Tailwind CSS v4 with semantic classes and precise clamp-based scaling.
         </p>
       </div>
-      <div class="text-body-sm flex flex-wrap gap-4 md:justify-end">
+      <div class="flex flex-wrap gap-4 text-body-sm md:justify-end">
         <a href="#features">Documentation</a>
         <a href="#configuration">Configuration</a>
         <a href="#usage">Examples</a>
         <a href="#faq">FAQ</a>
       </div>
     </div>
-    <p class="text-caption mono mt-4 mb-0 text-[color:var(--text-muted)]">© 2026 Tailwind Fluid Typography. MIT License.</p>
-  </div>
-</footer>
+    <p class="mb-0 mt-4 font-['IBM_Plex_Mono'] text-caption text-[color:var(--text-muted)]">© 2026 Tailwind Fluid Typography. MIT License.</p>
+  </Container>
+</Section>

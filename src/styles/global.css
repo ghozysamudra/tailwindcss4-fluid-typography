@@ -1,3 +1,4 @@
+@import "tailwindcss";
 @import "./advanced-fluid-typography.css";
 
 :root {
@@ -9,6 +10,7 @@
   --text-muted: #525047;
   --line: #c9bdaa;
   --accent: #186f8a;
+  --accent-foreground: #ffffff;
   --accent-soft: #d8edf3;
   --ok: #2f7b4a;
 }
@@ -22,6 +24,7 @@
   --text-muted: #c4c0b4;
   --line: #36403f;
   --accent: #5ac3e0;
+  --accent-foreground: #0f1414;
   --accent-soft: #173a45;
   --ok: #74d69d;
 }
@@ -38,6 +41,7 @@ body {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
 }
 
 body {
@@ -55,227 +59,10 @@ h2,
 h3,
 h4,
 h5,
-h6,
-.font-editorial {
+h6 {
   font-family: "Fraunces", "Iowan Old Style", "Times New Roman", serif;
 }
 
-a {
+a:not([class]) {
   color: inherit;
-}
-
-.container-shell {
-  margin-inline: auto;
-  width: min(1920px, calc(100% - 2rem));
-}
-
-.floating-nav {
-  position: fixed;
-  top: 0.9rem;
-  left: 0;
-  right: 0;
-  z-index: 40;
-  padding-inline: 0.7rem;
-}
-
-.floating-nav-inner {
-  margin-inline: auto;
-  width: min(1920px, 100%);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 0.45rem 0.6rem;
-  background: color-mix(in oklab, var(--surface) 88%, transparent);
-  backdrop-filter: blur(8px);
-}
-
-.nav-brand {
-  text-decoration: none;
-  color: var(--text);
-  padding-inline: 0.5rem;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: var(--text-muted);
-}
-
-.nav-cta {
-  color: #fff !important;
-  padding: 0.45rem 0.85rem;
-}
-
-.nav-theme {
-  padding-block: 0.45rem;
-}
-
-.nav-theme-icon {
-  width: 2.1rem;
-  height: 2.1rem;
-  padding: 0;
-}
-
-.nav-theme-icon [data-theme-icon] {
-  font-size: 1rem;
-  line-height: 1;
-}
-
-.nav-menu-btn {
-  display: none;
-  width: 2.1rem;
-  height: 2.1rem;
-  padding: 0;
-}
-
-.mobile-nav-menu {
-  display: none;
-}
-
-.section-pad {
-  padding-block: clamp(3rem, 7vw, 7rem);
-}
-
-.card {
-  border: 1px solid var(--line);
-  background: var(--surface);
-  border-radius: 1rem;
-}
-
-.dot {
-  width: 0.7rem;
-  height: 0.7rem;
-  border-radius: 999px;
-  background: var(--accent);
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  padding: 0.7rem 1.2rem;
-  text-decoration: none;
-  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
-}
-
-.btn:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-.btn-primary {
-  color: #fff;
-  background: var(--accent);
-}
-
-.btn-primary:hover {
-  transform: translateY(-1px);
-}
-
-.btn-secondary {
-  color: var(--text);
-  background: var(--surface);
-  border-color: var(--line);
-}
-
-.btn-secondary:hover {
-  background: var(--bg-muted);
-}
-
-.floating-nav .nav-menu-btn {
-  display: none;
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 500ms ease, transform 500ms ease;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
-.mono {
-  font-family: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
-}
-
-.copy-button {
-  border: 1px solid var(--line);
-  background: var(--bg);
-  color: var(--text);
-  border-radius: 0.5rem;
-  padding: 0.35rem 0.55rem;
-  cursor: pointer;
-}
-
-.copy-button[data-copied="true"] {
-  color: var(--ok);
-  border-color: var(--ok);
-}
-
-@media (max-width: 760px) {
-  .container-shell {
-    width: min(1100px, calc(100% - 1.2rem));
-  }
-
-  .floating-nav-inner {
-    border-radius: 1rem;
-    border-radius: 999px;
-    padding-inline: 0.45rem;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .nav-cta {
-    padding-inline: 0.7rem;
-  }
-
-  .nav-menu-btn {
-    display: inline-flex;
-  }
-
-  .mobile-nav-menu {
-    display: grid;
-    gap: 0.2rem;
-    margin: 0.45rem auto 0;
-    width: min(1100px, 100%);
-    padding: 0.6rem;
-    border-radius: 0.85rem;
-    background: color-mix(in oklab, var(--surface) 94%, transparent);
-  }
-
-  .mobile-nav-menu[hidden] {
-    display: none;
-  }
-
-  .mobile-nav-menu a {
-    text-decoration: none;
-    border-radius: 0.5rem;
-    padding: 0.5rem 0.55rem;
-  }
-
-  .mobile-nav-menu a:hover {
-    background: var(--bg-muted);
-  }
 }

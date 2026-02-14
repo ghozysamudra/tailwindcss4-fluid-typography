@@ -1,0 +1,12 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+}
+
+const { id, class: className } = Astro.props;
+---
+
+<section id={id} class:list={["py-[clamp(3rem,7vw,7rem)]", className]}>
+  <slot />
+</section>

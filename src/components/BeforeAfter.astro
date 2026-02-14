@@ -1,19 +1,25 @@
-<section class="section-pad" id="before-after">
-  <div class="container-shell reveal">
+---
+import Section from "./ui/Section.astro";
+import Container from "./ui/Container.astro";
+import Card from "./ui/Card.astro";
+---
+
+<Section id="before-after">
+  <Container class="opacity-0 translate-y-5 transition duration-500 [will-change:transform,opacity]" data-reveal>
     <h2 class="text-h2 m-0">Before / After</h2>
     <div class="mt-5 grid gap-4 md:grid-cols-2">
-      <article class="card min-w-0 overflow-hidden p-5">
-        <p class="text-h6 mono text-[color:var(--text-muted)]">Traditional Responsive</p>
-        <pre class="mono text-body-sm w-full max-w-full overflow-x-auto rounded-lg bg-[color:var(--bg-muted)] p-3">{`<h1 class="text-3xl md:text-5xl lg:text-6xl">Title</h1>
+      <Card class="min-w-0 overflow-hidden p-5">
+        <p class="font-['IBM_Plex_Mono'] text-h6 text-[color:var(--text-muted)]">Traditional Responsive</p>
+        <pre class="w-full max-w-full overflow-x-auto rounded-lg bg-[color:var(--bg-muted)] p-3 font-['IBM_Plex_Mono'] text-body-sm">{`<h1 class="text-3xl md:text-5xl lg:text-6xl">Title</h1>
 @media (min-width: 768px) { ... }
 @media (min-width: 1024px) { ... }
 @media (min-width: 1280px) { ... }`}</pre>
         <p class="text-body-sm mb-0 text-[color:var(--text-muted)]">Verbose and breakpoint-bound.</p>
-      </article>
+      </Card>
 
-      <article class="card min-w-0 overflow-hidden p-5">
-        <p class="text-h6 mono text-[color:var(--text-muted)]">Fluid Typography</p>
-        <pre class="mono text-body-sm w-full max-w-full overflow-x-auto rounded-lg bg-[color:var(--bg-muted)] p-3">{`<h1 class="text-h1">Title</h1>
+      <Card class="min-w-0 overflow-hidden p-5">
+        <p class="font-['IBM_Plex_Mono'] text-h6 text-[color:var(--text-muted)]">Fluid Typography</p>
+        <pre class="w-full max-w-full overflow-x-auto rounded-lg bg-[color:var(--bg-muted)] p-3 font-['IBM_Plex_Mono'] text-body-sm">{`<h1 class="text-h1">Title</h1>
 @theme {
   --fluid-min-base: 16;
   --fluid-max-base: 18;
@@ -21,7 +27,7 @@
   --fluid-max-ratio: 1.25;
 }`}</pre>
         <p class="text-body-sm mb-0 text-[color:var(--ok)]">Cleaner markup and smoother scaling.</p>
-      </article>
+      </Card>
     </div>
-  </div>
-</section>
+  </Container>
+</Section>

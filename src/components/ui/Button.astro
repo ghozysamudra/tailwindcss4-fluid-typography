@@ -1,0 +1,42 @@
+---
+interface Props {
+  href?: string;
+  type?: "button" | "submit" | "reset";
+  variant?: "primary" | "secondary";
+  class?: string;
+  target?: string;
+  rel?: string;
+  download?: string;
+  [key: string]: any;
+}
+
+const {
+  href,
+  type = "button",
+  variant = "secondary",
+  class: className,
+  target,
+  rel,
+  download,
+  ...rest
+} = Astro.props;
+
+const base =
+  "inline-flex items-center justify-center gap-1.5 rounded-full border px-4 py-[0.7rem] no-underline transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent)]";
+const styles =
+  variant === "primary"
+    ? "border-[color:var(--accent)] bg-[color:var(--accent)] text-[color:var(--accent-foreground)] hover:-translate-y-px"
+    : "border-[color:var(--line)] bg-[color:var(--surface)] text-[color:var(--text)] hover:bg-[color:var(--bg-muted)]";
+---
+
+{
+  href ? (
+    <a href={href} target={target} rel={rel} download={download} class:list={[base, styles, className]} {...rest}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class:list={[base, styles, className]} {...rest}>
+      <slot />
+    </button>
+  )
+}
