@@ -1,62 +1,20 @@
 # Fluid Typography for Tailwind CSS v4
 
-An Astro.js landing page and documentation site for a fluid typography system built on Tailwind CSS v4 and CSS `clamp()`.
+![Fluid Typography for Tailwind CSS v4](public/og-image.svg)
 
-## Features
+A production-ready fluid typography system for Tailwind CSS v4.
 
-- Editorial-style responsive landing page
-- Fluid typography system (`@theme` variables + semantic classes)
-- Interactive type scale demo with viewport simulation
-- Configuration Generator with:
-  - presets (`Balanced`, `Editorial`, `Dramatic`)
-  - slider + number inputs
-  - reset action
-  - generated CSS output
-  - generated font-size variable table preview
-- Light/dark theme toggle
-- Fully responsive layout and mobile-safe code blocks
+Use semantic utility classes powered by CSS `clamp()` and `@theme` variables to scale typography smoothly from mobile to large desktop without breakpoint-heavy text sizing.
 
-## Tech Stack
+## Why this system
 
-- Astro 5
-- Tailwind CSS v4 via `@tailwindcss/vite`
-- Vanilla client-side JavaScript for interactive demos
+- Smooth type scaling across viewport ranges
+- Semantic class names (`.text-h1`, `.text-body`, `.text-caption`)
+- Flexible styling (apply heading styles to any element)
+- One central configuration with six core variables
+- Works in Astro, React, Vue, Next.js, and plain HTML
 
-## Project Structure
-
-```text
-.
-├── src/
-│   ├── components/
-│   ├── layouts/
-│   ├── pages/
-│   └── styles/
-│       ├── advanced-fluid-typography.css
-│       └── global.css
-├── public/
-├── astro.config.mjs
-└── package.json
-```
-
-## Getting Started
-
-```bash
-npm install
-npm run dev
-```
-
-Open `http://localhost:4321`.
-
-## Build
-
-```bash
-npm run build
-npm run preview
-```
-
-## Core Typography Variables
-
-The generator and system are built around these values:
+## Core configuration
 
 ```css
 @theme {
@@ -69,10 +27,46 @@ The generator and system are built around these values:
 }
 ```
 
-## Notes
+## Available semantic classes
 
-- Main typography source: `src/styles/advanced-fluid-typography.css`
-- Public downloadable CSS files are available in `public/`
+- Display: `.text-display-xl`, `.text-display-lg`, `.text-display`
+- Headings: `.text-h1` to `.text-h6`
+- Body: `.text-body-xl`, `.text-body-lg`, `.text-body`, `.text-body-sm`
+- Utility: `.text-caption`, `.text-overline`
+
+## Installation
+
+1. Copy `src/styles/advanced-fluid-typography.css` into your project.
+2. Import it after Tailwind in your global stylesheet.
+
+```css
+@import "tailwindcss";
+@import "./advanced-fluid-typography.css";
+```
+
+3. Use semantic classes in your UI:
+
+```html
+<h1 class="text-h1">Page title</h1>
+<p class="text-body">Readable body copy across devices.</p>
+<p class="text-caption">Small supporting label</p>
+```
+
+## Migration example
+
+```html
+<!-- Before -->
+<h1 class="text-3xl md:text-5xl lg:text-6xl">Heading</h1>
+
+<!-- After -->
+<h1 class="text-h1">Heading</h1>
+```
+
+## In this repository
+
+- Core system file: `src/styles/advanced-fluid-typography.css`
+- Downloadable CSS: `public/advanced-fluid-typography.css`
+- Astro demo/docs site showing interactive usage and configuration
 
 ## License
 

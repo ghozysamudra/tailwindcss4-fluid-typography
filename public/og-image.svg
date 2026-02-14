@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
   <rect width="1200" height="630" fill="#F5F0E8"/>
   <rect x="60" y="60" width="1080" height="510" rx="24" fill="#186F8A"/>
-  <text x="110" y="270" fill="#F5F0E8" font-size="88" font-family="Georgia, serif">Fluid Typography</text>
-  <text x="110" y="350" fill="#D8EDF3" font-size="46" font-family="Arial, sans-serif">Tailwind CSS v4 + Astro landing page</text>
+  <text x="110" y="270" fill="#F5F0E8" font-size="74" font-family="Georgia, serif">Fluid Typography for Tailwind CSS v4</text>
+  <text x="110" y="350" fill="#D8EDF3" font-size="46" font-family="Arial, sans-serif">Typography That Adapts to Every Screen</text>
 </svg>
