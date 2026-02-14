@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ghozysamudra.github.io/tailwindcss4-fluid-typography/sitemap-index.xml
