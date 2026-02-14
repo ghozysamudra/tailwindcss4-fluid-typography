@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./advanced-fluid-typography.css";
+@plugin "@tailwindcss/typography";
 
 :root {
   color-scheme: light;

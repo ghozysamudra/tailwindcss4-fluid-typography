@@ -1,0 +1,128 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/ui/Section.astro";
+import Container from "../components/ui/Container.astro";
+import Button from "../components/ui/Button.astro";
+---
+
+<Layout
+  title="Prose Demo | Tailwind Fluid Typography"
+  description="Demo page for Tailwind Typography plugin (prose) with sample rich-text content."
+>
+  <Section class="pt-24">
+    <Container>
+      <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <h1 class="m-0 text-h2">Typography Plugin Demo (`.prose`)</h1>
+        <Button href="/" class="text-body-sm">Back to Home</Button>
+      </div>
+
+      <article class="prose prose-slate max-w-none rounded-2xl border border-[color:var(--line)] bg-[color:var(--surface)] p-6 md:p-8">
+        <h1>Building rich text with Tailwind Typography</h1>
+        <p>
+          This page uses Tailwind Typography plugin defaults via the <code>.prose</code> class.
+          It is useful for content you do not fully control, such as Markdown, CMS content, or
+          WYSIWYG output.
+        </p>
+
+        <h2>Why prose is useful</h2>
+        <ul>
+          <li>Gives sensible spacing and hierarchy to unknown HTML.</li>
+          <li>Styles lists, quotes, tables, and code blocks consistently.</li>
+          <li>Reduces the need to add utility classes to every element.</li>
+        </ul>
+
+        <h3>When to use it</h3>
+        <ol>
+          <li>Long-form documentation pages.</li>
+          <li>Blog content rendered from Markdown.</li>
+          <li>CMS pages with rich text editors.</li>
+        </ol>
+
+        <p>
+          You can still combine prose with utility classes. For example,
+          <a href="https://github.com/tailwindlabs/tailwindcss-typography" target="_blank" rel="noreferrer"
+            >see the official Typography plugin docs</a
+          >.
+        </p>
+
+        <blockquote>
+          <p>
+            Use semantic fluid classes for app UI you control, and <code>.prose</code> wrappers for
+            rich text you do not control.
+          </p>
+        </blockquote>
+
+        <hr />
+
+        <h2>Inline elements preview</h2>
+        <p>
+          This paragraph demonstrates <strong>strong text</strong>, <em>emphasis</em>,
+          <del>deleted text</del>, and <code>inline code</code>.
+          You can press <kbd>Cmd</kbd> + <kbd>K</kbd> to open command palettes in many apps.
+        </p>
+
+        <h2>Sample code block</h2>
+        <pre><code>{`<article class="prose prose-slate">
+  <h1>Post title</h1>
+  <p>Rendered markdown content...</p>
+</article>`}</code></pre>
+
+        <h3>Nested list sample</h3>
+        <ul>
+          <li>
+            Core setup
+            <ul>
+              <li>Import Tailwind and typography plugin.</li>
+              <li>Add a prose wrapper around unknown HTML.</li>
+            </ul>
+          </li>
+          <li>
+            Optional extension
+            <ul>
+              <li>Create a custom prose variant for brand styling.</li>
+              <li>Bridge headings/body to your fluid scale.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>Sample table</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Ratio</th>
+              <th>Use case</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1.2</td>
+              <td>Dense dashboards</td>
+            </tr>
+            <tr>
+              <td>1.25</td>
+              <td>Balanced docs/marketing</td>
+            </tr>
+            <tr>
+              <td>1.333</td>
+              <td>Editorial hierarchy</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Image + caption</h3>
+        <figure>
+          <img src="/og-image.svg" alt="Tailwind Fluid Typography preview graphic" loading="lazy" />
+          <figcaption>Sample image rendered inside a prose article.</figcaption>
+        </figure>
+
+        <details>
+          <summary>Prose testing note</summary>
+          <p>
+            This page intentionally includes headings, links, inline tags, nested lists, table,
+            image, and expandable content so you can inspect full plugin behavior quickly.
+          </p>
+        </details>
+      </article>
+    </Container>
+  </Section>
+</Layout>
