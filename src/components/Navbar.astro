@@ -1,0 +1,68 @@
+<nav class="floating-nav" aria-label="Primary">
+  <div class="floating-nav-inner">
+    <a href="#" class="text-body-sm mono nav-brand">Fluid Type</a>
+    <div class="nav-links">
+      <a href="#type-scale" class="text-body-sm">Demo</a>
+      <a href="#configuration" class="text-body-sm">Config</a>
+      <a href="#usage" class="text-body-sm">Examples</a>
+    </div>
+
+    <div class="nav-actions">
+      <button
+        type="button"
+        class="btn btn-secondary text-body-sm nav-theme nav-theme-icon"
+        data-theme-toggle
+        aria-pressed="false"
+        aria-label="Switch to dark theme"
+        title="Switch to dark theme"
+      >
+        <span aria-hidden="true" data-theme-icon>☾</span>
+      </button>
+      <a href="#getting-started" class="btn btn-primary text-body-sm nav-cta">Getting Started</a>
+      <button
+        type="button"
+        class="btn btn-secondary text-body-sm nav-menu-btn"
+        data-nav-toggle
+        aria-expanded="false"
+        aria-controls="mobile-nav-menu"
+        aria-label="Open menu"
+      >
+        <span aria-hidden="true">☰</span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-nav-menu" class="mobile-nav-menu card" data-nav-menu hidden>
+    <a href="#type-scale" class="text-body">Demo</a>
+    <a href="#configuration" class="text-body">Config</a>
+    <a href="#usage" class="text-body">Examples</a>
+    <a href="#faq" class="text-body">FAQ</a>
+  </div>
+
+  <script>
+    const nav = document.querySelector(".floating-nav");
+    const toggle = nav?.querySelector("[data-nav-toggle]");
+    const menu = nav?.querySelector("[data-nav-menu]");
+
+    const closeMenu = () => {
+      if (!(toggle instanceof HTMLButtonElement) || !(menu instanceof HTMLElement)) return;
+      toggle.setAttribute("aria-expanded", "false");
+      menu.hidden = true;
+    };
+
+    toggle?.addEventListener("click", () => {
+      if (!(toggle instanceof HTMLButtonElement) || !(menu instanceof HTMLElement)) return;
+      const open = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!open));
+      menu.hidden = open;
+    });
+
+    menu?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 760) closeMenu();
+    });
+  </script>
+</nav>

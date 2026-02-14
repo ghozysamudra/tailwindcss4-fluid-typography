@@ -45,10 +45,15 @@ const { title, description } = Astro.props;
       root.setAttribute("data-theme", initialTheme);
 
       const updateThemeLabel = (theme) => {
-        const toggle = document.querySelector("[data-theme-toggle]");
-        if (!toggle) return;
-        toggle.setAttribute("aria-pressed", String(theme === "dark"));
-        toggle.textContent = theme === "dark" ? "Switch to Light" : "Switch to Dark";
+        document.querySelectorAll("[data-theme-toggle]").forEach((toggle) => {
+          if (!(toggle instanceof HTMLButtonElement)) return;
+          const dark = theme === "dark";
+          toggle.setAttribute("aria-pressed", String(dark));
+          toggle.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+          toggle.setAttribute("title", dark ? "Switch to light theme" : "Switch to dark theme");
+          const icon = toggle.querySelector("[data-theme-icon]");
+          if (icon) icon.textContent = dark ? "☀" : "☾";
+        });
       };
 
       updateThemeLabel(initialTheme);
@@ -56,7 +61,8 @@ const { title, description } = Astro.props;
       document.addEventListener("click", (event) => {
         const target = event.target;
         if (!(target instanceof HTMLElement)) return;
-        if (!target.matches("[data-theme-toggle]")) return;
+        const toggle = target.closest("[data-theme-toggle]");
+        if (!(toggle instanceof HTMLButtonElement)) return;
 
         const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
         root.setAttribute("data-theme", next);
