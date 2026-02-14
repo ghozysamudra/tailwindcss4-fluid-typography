@@ -1,0 +1,25 @@
+{
+  "name": "tailwindcss4-fluid-typography",
+  "version": "0.1.0",
+  "description": "Editorial-style Astro landing page for Tailwind CSS v4 fluid typography.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "keywords": [
+    "tailwindcss",
+    "fluid-typography",
+    "astro",
+    "responsive-design",
+    "css-clamp"
+  ],
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "astro": "^5.17.2",
+    "tailwindcss": "^4.1.18"
+  }
+}

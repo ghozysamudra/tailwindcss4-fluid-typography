@@ -1,0 +1,27 @@
+---
+const features = [
+  ["Fluid scaling", "Type transitions continuously between viewport ranges."],
+  ["Semantic utilities", "Use .text-h1 through .text-caption on any element."],
+  ["Zero media queries", "Clamp handles interpolation so your CSS stays clean."],
+  ["Fully configurable", "Six variables reshape the entire type hierarchy."],
+  ["System consistency", "Heading rhythm stays coherent across teams and products."],
+  ["Production-ready", "CSS-only implementation keeps bundles minimal and stable."]
+];
+---
+
+<section class="section-pad" id="features">
+  <div class="container-shell reveal">
+    <h2 class="text-h2 m-0">Key Features</h2>
+    <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        features.map(([title, body], index) => (
+          <article class="card p-5 transition-transform duration-200 hover:-translate-y-1">
+            <p class="mono text-caption m-0 text-[color:var(--accent)]">0{index + 1}</p>
+            <h3 class="text-h3 mt-2 mb-2">{title}</h3>
+            <p class="text-body m-0 text-[color:var(--text-muted)]">{body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

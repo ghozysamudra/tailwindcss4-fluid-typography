@@ -1,0 +1,40 @@
+<section class="section-pad" id="getting-started">
+  <div class="container-shell reveal">
+    <h2 class="text-h2 m-0">Getting Started</h2>
+    <div class="mt-5 grid gap-4 lg:grid-cols-2">
+      <article class="card min-w-0 overflow-hidden p-5">
+        <h3 class="text-h3 m-0">Install in 3 steps</h3>
+        <ol class="text-body mt-4 list-decimal space-y-2 pl-5 text-[color:var(--text-muted)]">
+          <li>Copy <code class="mono">advanced-fluid-typography.css</code> into your project.</li>
+          <li>Import it in your main stylesheet after Tailwind.</li>
+          <li>Apply semantic classes like <code class="mono">.text-h2</code> and <code class="mono">.text-body</code>.</li>
+        </ol>
+        <a href="/advanced-fluid-typography.css" class="btn btn-secondary text-body mt-4">Download CSS</a>
+      </article>
+
+      <article class="card min-w-0 overflow-hidden p-5">
+        <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+          <p class="text-h6 mono m-0 text-[color:var(--text-muted)]">Framework snippets</p>
+          <button
+            type="button"
+            class="copy-button mono text-caption"
+            data-copy={`/* Astro */\n@import \"./advanced-fluid-typography.css\";\n\n/* HTML */\n<h1 class=\"text-h1\">Heading</h1>\n\n/* React */\n<h1 className=\"text-h1\">Heading</h1>\n\n/* Vue */\n<h1 class=\"text-h1\">Heading</h1>`}
+          >
+            Copy
+          </button>
+        </div>
+        <pre class="mono text-body-sm m-0 w-full max-w-full overflow-x-auto rounded-lg bg-[color:var(--bg-muted)] p-3">{`/* Astro */
+@import "./advanced-fluid-typography.css";
+
+/* HTML */
+<h1 class="text-h1">Heading</h1>
+
+/* React */
+<h1 className="text-h1">Heading</h1>
+
+/* Vue */
+<h1 class="text-h1">Heading</h1>`}</pre>
+      </article>
+    </div>
+  </div>
+</section>

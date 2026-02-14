@@ -1,0 +1,139 @@
+---
+const tokens = [
+  ["text-h1", "Primary page heading"],
+  ["text-h2", "Section heading"],
+  ["text-h3", "Card heading"],
+  ["text-h4", "Subsection heading"],
+  ["text-h5", "Compact heading"],
+  ["text-h6", "Overline style heading"],
+  ["text-body", "Default paragraph copy"],
+  ["text-caption", "Fine print and labels"]
+] as const;
+---
+
+<section class="section-pad" id="type-scale">
+  <div class="container-shell reveal">
+    <div class="mb-5 flex items-end justify-between gap-4">
+      <h2 class="text-h2 m-0">Live Demo: Interactive Type Scale</h2>
+      <p class="text-caption mono m-0">Drag to simulate viewport</p>
+    </div>
+
+    <div class="card p-4 md:p-6">
+      <div class="mb-4 flex flex-wrap items-center gap-3">
+        <label for="viewport-control" class="text-body-sm mono">Viewport</label>
+        <input
+          id="viewport-control"
+          type="range"
+          min="320"
+          max="1600"
+          value="920"
+          class="w-[min(32rem,85vw)]"
+          data-viewport-control
+        />
+        <output class="text-body-sm mono" data-viewport-output>920px</output>
+      </div>
+
+      <div class="w-full" data-resize-shell>
+        <div class="mx-auto max-w-full overflow-hidden rounded-xl border border-[color:var(--line)]" data-resize-stage style="width:min(920px,100%);">
+        <div class="bg-[color:var(--surface)] p-4 md:p-6" data-size-stage>
+          {tokens.map(([token, description]) => (
+            <article class="border-b border-[color:var(--line)] py-3 last:border-b-0">
+              <p class="mono text-caption m-0 text-[color:var(--text-muted)]">
+                .{token} <span data-token-size={token} class="ml-2">0px</span>
+              </p>
+              <p class:list={[token, "m-0"]} data-token-sample={token}>The quick brown fox scales with confidence.</p>
+              <p class="text-caption m-0 text-[color:var(--text-muted)]">{description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const slider = document.querySelector("[data-viewport-control]");
+    const output = document.querySelector("[data-viewport-output]");
+    const shell = document.querySelector("[data-resize-shell]");
+    const stage = document.querySelector("[data-resize-stage]");
+    const sizeStage = document.querySelector("[data-size-stage]");
+
+    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+    const pow = (base, exp) => (exp >= 0 ? base ** exp : 1 / base ** Math.abs(exp));
+
+    const readFluidConfig = () => {
+      const styles = window.getComputedStyle(document.documentElement);
+      const read = (name, fallback) => Number.parseFloat(styles.getPropertyValue(name).trim()) || fallback;
+
+      return {
+        minWidth: read("--fluid-min-width", 360),
+        maxWidth: read("--fluid-max-width", 1280),
+        minBase: read("--fluid-min-base", 16),
+        maxBase: read("--fluid-max-base", 18),
+        minRatio: read("--fluid-min-ratio", 1.2),
+        maxRatio: read("--fluid-max-ratio", 1.25)
+      };
+    };
+
+    const tokenSteps = {
+      "text-h1": 4,
+      "text-h2": 3,
+      "text-h3": 2,
+      "text-h4": 1,
+      "text-h5": 0,
+      "text-h6": -1,
+      "text-body": 0,
+      "text-caption": -2
+    };
+
+    const getFluidSize = (token, viewport) => {
+      const config = readFluidConfig();
+      const step = tokenSteps[token] ?? 0;
+      const v = clamp(viewport, config.minWidth, config.maxWidth);
+      const progress = (v - config.minWidth) / Math.max(1, config.maxWidth - config.minWidth);
+
+      const minSize = config.minBase * pow(config.minRatio, step);
+      const maxSize = config.maxBase * pow(config.maxRatio, step);
+
+      return minSize + (maxSize - minSize) * progress;
+    };
+
+    const update = () => {
+      if (
+        !(slider instanceof HTMLInputElement) ||
+        !(stage instanceof HTMLElement) ||
+        !(shell instanceof HTMLElement) ||
+        !(output instanceof HTMLOutputElement)
+      ) {
+        return;
+      }
+
+      const viewport = Number(slider.value);
+      const stageWidth = Math.min(viewport, shell.clientWidth);
+      stage.style.width = `${stageWidth}px`;
+      stage.style.maxWidth = "100%";
+      output.value = `${viewport}px`;
+      output.textContent = `${viewport}px (${Math.round(stageWidth)}px shown)`;
+
+      if (!(sizeStage instanceof HTMLElement)) return;
+
+      sizeStage.querySelectorAll("[data-token-sample]").forEach((sample) => {
+        if (!(sample instanceof HTMLElement)) return;
+        const token = sample.getAttribute("data-token-sample");
+        if (!token) return;
+
+        const size = getFluidSize(token, viewport);
+        sample.style.fontSize = `${size.toFixed(2)}px`;
+
+        const label = sizeStage.querySelector(`[data-token-size='${token}']`);
+        if (label instanceof HTMLElement) {
+          label.textContent = `${size.toFixed(2)}px`;
+        }
+      });
+    };
+
+    slider?.addEventListener("input", update);
+    window.addEventListener("resize", update);
+    update();
+  </script>
+</section>

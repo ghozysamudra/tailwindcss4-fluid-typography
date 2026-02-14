@@ -1,0 +1,615 @@
+---
+
+---
+
+<section class="section-pad" id="configuration">
+  <div class="container-shell reveal">
+    <h2 class="text-h2 m-0">Configuration Generator</h2>
+    <p class="text-body mt-2 text-[color:var(--text-muted)]">
+      Tune your viewport range, base sizes, and scale ratios. The preview
+      updates immediately and generates copy-paste-ready CSS.
+    </p>
+
+    <div class="mt-5 grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+      <form
+        class="card flex flex-col gap-4 overflow-visible p-5"
+        data-config-form
+      >
+        <p class="text-body-sm m-0">Presets</p>
+        <div class="flex flex-wrap gap-2">
+          <button
+            type="button"
+            class="btn btn-secondary text-body-sm"
+            data-preset="balanced">Balanced</button
+          >
+          <button
+            type="button"
+            class="btn btn-secondary text-body-sm"
+            data-preset="editorial">Editorial</button
+          >
+          <button
+            type="button"
+            class="btn btn-secondary text-body-sm"
+            data-preset="dramatic">Dramatic</button
+          >
+        </div>
+
+        <div class="grid gap-3 xl:grid-cols-2">
+          <fieldset
+            class="grid min-w-0 gap-3 rounded-lg border border-[color:var(--line)] p-3"
+          >
+            <legend class="text-h6 px-1">Minimum (mobile)</legend>
+
+            <div class="grid gap-2">
+              <div class="flex items-center gap-2">
+                <label class="text-body-sm"
+                  >Min viewport <span class="mono" data-v="min-width">360</span
+                  ></label
+                >
+                <span class="help-wrap">
+                  <button
+                    type="button"
+                    class="help-icon"
+                    aria-label="About min viewport">?</button
+                  >
+                  <span class="help-popup text-caption"
+                    >Smallest viewport width where fluid scaling starts (usually
+                    320-390px).</span
+                  >
+                </span>
+              </div>
+              <div class="grid gap-2 sm:grid-cols-[1fr_auto] sm:items-center">
+                <input
+                  type="range"
+                  min="280"
+                  max="960"
+                  value="360"
+                  step="10"
+                  data-field="min-width"
+                  data-role="range"
+                />
+                <input
+                  type="number"
+                  min="280"
+                  max="960"
+                  value="360"
+                  step="10"
+                  data-field="min-width"
+                  data-role="number"
+                  class="w-full rounded-md border border-[color:var(--line)] bg-[color:var(--surface)] px-2 py-1 mono text-body-sm sm:w-28"
+                />
+              </div>
+            </div>
+
+            <div class="grid gap-2">
+              <div class="flex items-center gap-2">
+                <label class="text-body-sm"
+                  >Min base <span class="mono" data-v="min-base">16</span
+                  ></label
+                >
+                <span class="help-wrap">
+                  <button
+                    type="button"
+                    class="help-icon"
+                    aria-label="About min base">?</button
+                  >
+                  <span class="help-popup text-caption"
+                    >Body font size at min viewport. Common range is 15-17px.</span
+                  >
+                </span>
+              </div>
+              <div class="grid gap-2 sm:grid-cols-[1fr_auto] sm:items-center">
+                <input
+                  type="range"
+                  min="12"
+                  max="20"
+                  value="16"
+                  step="1"
+                  data-field="min-base"
+                  data-role="range"
+                />
+                <input
+                  type="number"
+                  min="12"
+                  max="20"
+                  value="16"
+                  step="1"
+                  data-field="min-base"
+                  data-role="number"
+                  class="w-full rounded-md border border-[color:var(--line)] bg-[color:var(--surface)] px-2 py-1 mono text-body-sm sm:w-28"
+                />
+              </div>
+            </div>
+
+            <div class="grid gap-2">
+              <div class="flex items-center gap-2">
+                <label class="text-body-sm"
+                  >Min ratio <span class="mono" data-v="min-ratio">1.20</span
+                  ></label
+                >
+                <span class="help-wrap">
+                  <button
+                    type="button"
+                    class="help-icon"
+                    aria-label="About min ratio">?</button
+                  >
+                  <span class="help-popup text-caption"
+                    >Scale ratio at min viewport. Lower ratios create subtler
+                    hierarchy.</span
+                  >
+                </span>
+              </div>
+              <div class="grid gap-2 sm:grid-cols-[1fr_auto] sm:items-center">
+                <input
+                  type="range"
+                  min="1.1"
+                  max="1.45"
+                  value="1.2"
+                  step="0.01"
+                  data-field="min-ratio"
+                  data-role="range"
+                />
+                <input
+                  type="number"
+                  min="1.1"
+                  max="1.45"
+                  value="1.2"
+                  step="0.01"
+                  data-field="min-ratio"
+                  data-role="number"
+                  class="w-full rounded-md border border-[color:var(--line)] bg-[color:var(--surface)] px-2 py-1 mono text-body-sm sm:w-28"
+                />
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset
+            class="grid min-w-0 gap-3 rounded-lg border border-[color:var(--line)] p-3"
+          >
+            <legend class="text-h6 px-1">Maximum (desktop)</legend>
+
+            <div class="grid gap-2">
+              <div class="flex items-center gap-2">
+                <label class="text-body-sm"
+                  >Max viewport <span class="mono" data-v="max-width">1280</span
+                  ></label
+                >
+                <span class="help-wrap">
+                  <button
+                    type="button"
+                    class="help-icon"
+                    aria-label="About max viewport">?</button
+                  >
+                  <span class="help-popup text-caption"
+                    >Largest viewport where scaling stops. Wider screens stay at
+                    max sizes.</span
+                  >
+                </span>
+              </div>
+              <div class="grid gap-2 sm:grid-cols-[1fr_auto] sm:items-center">
+                <input
+                  type="range"
+                  min="1024"
+                  max="2560"
+                  value="1280"
+                  step="16"
+                  data-field="max-width"
+                  data-role="range"
+                />
+                <input
+                  type="number"
+                  min="1024"
+                  max="2560"
+                  value="1280"
+                  step="16"
+                  data-field="max-width"
+                  data-role="number"
+                  class="w-full rounded-md border border-[color:var(--line)] bg-[color:var(--surface)] px-2 py-1 mono text-body-sm sm:w-28"
+                />
+              </div>
+            </div>
+
+            <div class="grid gap-2">
+              <div class="flex items-center gap-2">
+                <label class="text-body-sm"
+                  >Max base <span class="mono" data-v="max-base">18</span
+                  ></label
+                >
+                <span class="help-wrap">
+                  <button
+                    type="button"
+                    class="help-icon"
+                    aria-label="About max base">?</button
+                  >
+                  <span class="help-popup text-caption"
+                    >Body font size at max viewport. Typical desktop values:
+                    17-20px.</span
+                  >
+                </span>
+              </div>
+              <div class="grid gap-2 sm:grid-cols-[1fr_auto] sm:items-center">
+                <input
+                  type="range"
+                  min="14"
+                  max="24"
+                  value="18"
+                  step="1"
+                  data-field="max-base"
+                  data-role="range"
+                />
+                <input
+                  type="number"
+                  min="14"
+                  max="24"
+                  value="18"
+                  step="1"
+                  data-field="max-base"
+                  data-role="number"
+                  class="w-full rounded-md border border-[color:var(--line)] bg-[color:var(--surface)] px-2 py-1 mono text-body-sm sm:w-28"
+                />
+              </div>
+            </div>
+
+            <div class="grid gap-2">
+              <div class="flex items-center gap-2">
+                <label class="text-body-sm"
+                  >Max ratio <span class="mono" data-v="max-ratio">1.25</span
+                  ></label
+                >
+                <span class="help-wrap">
+                  <button
+                    type="button"
+                    class="help-icon"
+                    aria-label="About max ratio">?</button
+                  >
+                  <span class="help-popup text-caption"
+                    >Scale ratio at desktop. Higher values create more dramatic
+                    headings.</span
+                  >
+                </span>
+              </div>
+              <div class="grid gap-2 sm:grid-cols-[1fr_auto] sm:items-center">
+                <input
+                  type="range"
+                  min="1.2"
+                  max="1.7"
+                  value="1.25"
+                  step="0.01"
+                  data-field="max-ratio"
+                  data-role="range"
+                />
+                <input
+                  type="number"
+                  min="1.2"
+                  max="1.7"
+                  value="1.25"
+                  step="0.01"
+                  data-field="max-ratio"
+                  data-role="number"
+                  class="w-full rounded-md border border-[color:var(--line)] bg-[color:var(--surface)] px-2 py-1 mono text-body-sm sm:w-28"
+                />
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="mt-2 flex flex-wrap gap-2">
+          <button
+            type="reset"
+            class="btn btn-secondary text-body-sm"
+            data-config-reset>Reset values</button
+          >
+        </div>
+      </form>
+
+      <div class="grid gap-4">
+        <article class="card p-5">
+          <div class="mb-4 flex items-center justify-between gap-3">
+            <h3 class="text-h4 m-0">Live Preview + Generated CSS</h3>
+            <button
+              type="button"
+              class="copy-button mono text-caption"
+              data-copy-target="generated-config"
+            >
+              Copy
+            </button>
+          </div>
+          <p class="text-h2 m-0" data-config-preview>
+            Scale with the settings you choose.
+          </p>
+          <pre
+            id="generated-config"
+            class="mono text-caption mt-4 overflow-x-auto rounded-lg border border-[color:var(--line)] p-3">
+          </pre>
+
+          <div
+            class="mt-4 overflow-x-auto rounded-lg border border-[color:var(--line)]"
+          >
+            <table
+              class="w-full border-collapse text-left"
+              aria-label="Generated font size variables"
+            >
+              <thead>
+                <tr
+                  class="border-b border-[color:var(--line)] bg-[color:var(--bg-muted)]"
+                >
+                  <th class="mono text-caption p-2">Variable</th>
+                  <th class="mono text-caption p-2">Min</th>
+                  <th class="mono text-caption p-2">Max</th>
+                </tr>
+              </thead>
+              <tbody data-size-preview></tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.querySelector("[data-config-form]");
+    const output = document.getElementById("generated-config");
+    const preview = document.querySelector("[data-config-preview]");
+    const sizePreview = document.querySelector("[data-size-preview]");
+    const presetButtons = Array.from(
+      document.querySelectorAll("[data-preset]"),
+    );
+    const syncedInputs = Array.from(document.querySelectorAll("[data-field]"));
+
+    const presets = {
+      balanced: {
+        minWidth: "360",
+        maxWidth: "1280",
+        minBase: "16",
+        maxBase: "18",
+        minRatio: "1.20",
+        maxRatio: "1.25",
+      },
+      editorial: {
+        minWidth: "360",
+        maxWidth: "1440",
+        minBase: "17",
+        maxBase: "20",
+        minRatio: "1.20",
+        maxRatio: "1.33",
+      },
+      dramatic: {
+        minWidth: "320",
+        maxWidth: "1920",
+        minBase: "16",
+        maxBase: "19",
+        minRatio: "1.25",
+        maxRatio: "1.50",
+      },
+    };
+
+    const defaults = presets.balanced;
+
+    const variableSteps = [
+      ["--font-size-xs", -2],
+      ["--font-size-sm", -1],
+      ["--font-size-base", 0],
+      ["--font-size-lg", 1],
+      ["--font-size-xl", 2],
+      ["--font-size-2xl", 3],
+      ["--font-size-3xl", 4],
+      ["--font-size-4xl", 5],
+      ["--font-size-5xl", 6],
+    ];
+
+    const pow = (base, exp) =>
+      exp >= 0 ? base ** exp : 1 / base ** Math.abs(exp);
+
+    const readField = (field) => {
+      if (!(form instanceof HTMLFormElement)) return "0";
+      const input = form.querySelector(
+        `[data-field='${field}'][data-role='range']`,
+      );
+      if (!(input instanceof HTMLInputElement)) return "0";
+      return input.value;
+    };
+
+    const syncField = (field, value, source = null) => {
+      if (!(form instanceof HTMLFormElement)) return;
+      const targets = form.querySelectorAll(`[data-field='${field}']`);
+      targets.forEach((target) => {
+        if (!(target instanceof HTMLInputElement)) return;
+        if (source && target === source) return;
+        target.value = value;
+      });
+    };
+
+    const withViewportLock = (fn) => {
+      if (!(form instanceof HTMLElement)) {
+        fn();
+        return;
+      }
+      const beforeTop = form.getBoundingClientRect().top;
+      fn();
+      requestAnimationFrame(() => {
+        const afterTop = form.getBoundingClientRect().top;
+        const delta = afterTop - beforeTop;
+        if (Math.abs(delta) > 1) window.scrollBy(0, delta);
+      });
+    };
+
+    const updateControls = (set) => {
+      if (!(form instanceof HTMLFormElement)) return;
+      const controls = {
+        "min-width": set.minWidth,
+        "max-width": set.maxWidth,
+        "min-base": set.minBase,
+        "max-base": set.maxBase,
+        "min-ratio": set.minRatio,
+        "max-ratio": set.maxRatio,
+      };
+
+      Object.entries(controls).forEach(([name, value]) => {
+        syncField(name, value);
+      });
+    };
+
+    const renderConfig = () => {
+      if (
+        !(form instanceof HTMLFormElement) ||
+        !(output instanceof HTMLElement)
+      )
+        return;
+
+      const values = {
+        minWidth: readField("min-width"),
+        maxWidth: readField("max-width"),
+        minBase: readField("min-base"),
+        maxBase: readField("max-base"),
+        minRatio: Number(readField("min-ratio")).toFixed(2),
+        maxRatio: Number(readField("max-ratio")).toFixed(2),
+      };
+
+      form.querySelectorAll("[data-v]").forEach((label) => {
+        const key = label.getAttribute("data-v");
+        if (!key) return;
+        const lookup = {
+          "min-width": values.minWidth,
+          "max-width": values.maxWidth,
+          "min-base": values.minBase,
+          "max-base": values.maxBase,
+          "min-ratio": values.minRatio,
+          "max-ratio": values.maxRatio,
+        };
+        const value = lookup[key];
+        if (value) label.textContent = value;
+      });
+
+      const css = `@theme {\n  --fluid-min-width: ${values.minWidth};\n  --fluid-max-width: ${values.maxWidth};\n  --fluid-min-base: ${values.minBase};\n  --fluid-max-base: ${values.maxBase};\n  --fluid-min-ratio: ${values.minRatio};\n  --fluid-max-ratio: ${values.maxRatio};\n}`;
+      output.textContent = css;
+
+      const root = document.documentElement;
+      root.style.setProperty("--fluid-min-width", values.minWidth);
+      root.style.setProperty("--fluid-max-width", values.maxWidth);
+      root.style.setProperty("--fluid-min-base", values.minBase);
+      root.style.setProperty("--fluid-max-base", values.maxBase);
+      root.style.setProperty("--fluid-min-ratio", values.minRatio);
+      root.style.setProperty("--fluid-max-ratio", values.maxRatio);
+
+      if (preview instanceof HTMLElement) {
+        preview.textContent = `Scale with ${values.minBase}px-${values.maxBase}px base and ${values.minRatio}-${values.maxRatio} ratio.`;
+      }
+
+      if (sizePreview instanceof HTMLElement) {
+        sizePreview.innerHTML = "";
+        const minBase = Number(values.minBase);
+        const maxBase = Number(values.maxBase);
+        const minRatio = Number(values.minRatio);
+        const maxRatio = Number(values.maxRatio);
+
+        variableSteps.forEach(([name, step]) => {
+          const min = minBase * pow(minRatio, step);
+          const max = maxBase * pow(maxRatio, step);
+          const isBase = name === "--font-size-base";
+
+          const row = document.createElement("tr");
+          row.className = isBase
+            ? "border-b border-[color:var(--line)] bg-[color:var(--accent-soft)] last:border-b-0"
+            : "border-b border-[color:var(--line)] last:border-b-0";
+          row.innerHTML = `
+            <td class="mono text-caption p-2 ${isBase ? "font-bold" : ""}">${name}</td>
+            <td class="mono text-caption p-2 ${isBase ? "font-bold" : ""}">${min.toFixed(2)}px</td>
+            <td class="mono text-caption p-2 ${isBase ? "font-bold" : ""}">${max.toFixed(2)}px</td>
+          `;
+          sizePreview.append(row);
+        });
+      }
+    };
+
+    presetButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (!(button instanceof HTMLButtonElement)) return;
+        const key = button.dataset.preset;
+        if (!key || !(key in presets)) return;
+        withViewportLock(() => {
+          updateControls(presets[key]);
+          renderConfig();
+        });
+      });
+    });
+
+    syncedInputs.forEach((input) => {
+      input.addEventListener("input", (event) => {
+        if (!(event.target instanceof HTMLInputElement)) return;
+        const field = event.target.dataset.field;
+        if (!field) return;
+        syncField(field, event.target.value, event.target);
+        withViewportLock(renderConfig);
+      });
+    });
+
+    form?.addEventListener("reset", () => {
+      window.setTimeout(() => {
+        withViewportLock(() => {
+          updateControls(defaults);
+          renderConfig();
+        });
+      }, 0);
+    });
+    renderConfig();
+
+    document.addEventListener("click", async (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+      const button = target.closest("[data-copy-target='generated-config']");
+      if (
+        !(button instanceof HTMLButtonElement) ||
+        !(output instanceof HTMLElement)
+      )
+        return;
+      await navigator.clipboard.writeText(output.textContent ?? "");
+      button.textContent = "Copied!";
+      window.setTimeout(() => (button.textContent = "Copy"), 1300);
+    });
+  </script>
+
+  <style>
+    .help-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .help-icon {
+      width: 1.15rem;
+      height: 1.15rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--bg-muted);
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      line-height: 1;
+      padding: 0;
+      cursor: help;
+    }
+
+    .help-popup {
+      position: absolute;
+      left: 50%;
+      top: calc(100% + 0.35rem);
+      z-index: 20;
+      width: min(16rem, 70vw);
+      transform: translateX(-50%);
+      border: 1px solid var(--line);
+      border-radius: 0.5rem;
+      padding: 0.45rem 0.55rem;
+      color: var(--text);
+      background: var(--surface);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 120ms ease;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+    }
+
+    .help-wrap:hover .help-popup,
+    .help-wrap:focus-within .help-popup {
+      opacity: 1;
+    }
+  </style>
+</section>

@@ -1,0 +1,19 @@
+---
+import { Code } from "astro:components";
+
+interface Props {
+  code: string;
+  lang?: "css" | "html" | "jsx" | "tsx" | "ts" | "vue";
+  title?: string;
+}
+
+const { code, lang = "css", title = "Example" } = Astro.props;
+---
+
+<section class="card p-4 md:p-6">
+  <div class="mb-3 flex items-center justify-between gap-3">
+    <p class="text-h6 mono m-0 text-[color:var(--text-muted)]">{title}</p>
+    <button class="copy-button mono text-caption" type="button" data-copy={code}>Copy</button>
+  </div>
+  <Code code={code} lang={lang} />
+</section>

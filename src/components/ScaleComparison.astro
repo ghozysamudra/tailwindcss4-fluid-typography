@@ -1,0 +1,51 @@
+---
+const ratios = [
+  ["1.2", "Minor Third", "UI-heavy products and dashboards"],
+  ["1.25", "Major Third", "Balanced marketing and docs pages"],
+  ["1.333", "Perfect Fourth", "Editorial layouts with stronger hierarchy"],
+  ["1.5", "Perfect Fifth", "Bold hero-led campaigns"],
+  ["1.618", "Golden Ratio", "Experimental art-direction projects"]
+].map(([ratio, name, use]) => {
+  const r = Number(ratio);
+  return {
+    ratio,
+    name,
+    use,
+    h3Size: `${(r ** 2).toFixed(2)}rem`,
+    bodySize: `${Math.max(0.88, 1 / (r / 1.2)).toFixed(2)}rem`
+  };
+});
+---
+
+<section class="section-pad" id="comparison-scale">
+  <div class="container-shell reveal">
+    <h2 class="text-h2 m-0">Type Scale Comparison</h2>
+    <div class="mt-5 overflow-x-auto card p-4">
+      <table class="w-full border-collapse text-left">
+        <thead>
+          <tr class="border-b border-[color:var(--line)]">
+            <th class="text-h6 py-2">Ratio</th>
+            <th class="text-h6 py-2">Name</th>
+            <th class="text-h6 py-2">Hierarchy Sample</th>
+            <th class="text-h6 py-2">Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            ratios.map((item) => (
+              <tr class="border-b border-[color:var(--line)] last:border-b-0">
+                <td class="text-body py-3 mono">{item.ratio}</td>
+                <td class="text-body py-3">{item.name}</td>
+                <td class="py-3">
+                  <p class="m-0 font-editorial font-semibold" style={`font-size:${item.h3Size}; line-height:1.2;`}>H3 Sample</p>
+                  <p class="m-0 text-[color:var(--text-muted)]" style={`font-size:${item.bodySize}; line-height:1.55;`}>Body copy</p>
+                </td>
+                <td class="text-body py-3 text-[color:var(--text-muted)]">{item.use}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

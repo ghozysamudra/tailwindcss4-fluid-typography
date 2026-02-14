@@ -1,0 +1,117 @@
+---
+const examples = [
+  {
+    id: "blog",
+    label: "Blog",
+    previewTitle: "Designing with fluid rhythm",
+    previewBody: "A readable article flow with stable hierarchy from mobile to desktop.",
+    code: `<article class="max-w-3xl mx-auto">
+  <p class="text-h6 text-sky-600">Editorial</p>
+  <h1 class="text-h2">Designing with fluid rhythm</h1>
+  <p class="text-body-lg text-slate-600">A readable article intro that scales gently.</p>
+  <p class="text-body">Paragraph copy with consistent line-height.</p>
+</article>`
+  },
+  {
+    id: "hero",
+    label: "Landing Hero",
+    previewTitle: "Craft better first impressions",
+    previewBody: "Display text remains dramatic without overwhelming small screens.",
+    code: `<section class="text-center">
+  <p class="text-overline text-sky-700">Now Shipping</p>
+  <h1 class="text-display-xl">Craft better first impressions</h1>
+  <p class="text-body-xl text-slate-600">Fluid typography keeps this hero balanced everywhere.</p>
+</section>`
+  },
+  {
+    id: "card",
+    label: "Card",
+    previewTitle: "Plan once, scale everywhere",
+    previewBody: "Reusable card modules can share typography semantics with the whole site.",
+    code: `<article class="p-6 rounded-2xl border">
+  <h3 class="text-h3">Plan once, scale everywhere</h3>
+  <p class="text-body text-slate-600">Card text stays proportional at every breakpoint.</p>
+</article>`
+  },
+  {
+    id: "dashboard",
+    label: "Dashboard",
+    previewTitle: "$124,500",
+    previewBody: "Stats views can use display classes while preserving UI clarity.",
+    code: `<div class="p-6 rounded-xl border">
+  <p class="text-caption text-slate-500">Total Revenue</p>
+  <p class="text-display-lg font-bold">$124,500</p>
+  <p class="text-body-sm text-green-700">+12% from last month</p>
+</div>`
+  }
+];
+---
+
+<section class="section-pad" id="usage">
+  <div class="container-shell reveal">
+    <h2 class="text-h2 m-0">Usage Examples</h2>
+    <p class="text-body mt-2 text-[color:var(--text-muted)]">
+      Switch examples to inspect practical implementation patterns with copy-ready snippets.
+    </p>
+
+    <div class="mt-5 card overflow-hidden p-5">
+      <div class="mb-4 flex flex-wrap gap-2" role="tablist" aria-label="Usage tabs">
+        {examples.map((example, idx) => (
+          <button
+            type="button"
+            class="btn btn-secondary text-body-sm whitespace-nowrap"
+            role="tab"
+            aria-selected={idx === 0 ? "true" : "false"}
+            data-example-tab={example.id}
+          >
+            {example.label}
+          </button>
+        ))}
+      </div>
+
+      {examples.map((example, idx) => (
+        <article class:list={["grid gap-4 md:grid-cols-2", idx === 0 ? "" : "hidden"]} data-example-panel={example.id} role="tabpanel">
+          <div class="card min-w-0 overflow-hidden p-5">
+            <p class="text-h6 mono text-[color:var(--text-muted)]">Preview</p>
+            <h3 class="text-h2 mt-2 break-words">{example.previewTitle}</h3>
+            <p class="text-body break-words text-[color:var(--text-muted)]">{example.previewBody}</p>
+          </div>
+          <div class="card min-w-0 overflow-hidden p-5">
+            <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
+              <p class="text-h6 mono m-0 text-[color:var(--text-muted)]">Code</p>
+              <button type="button" class="copy-button mono text-caption" data-copy={example.code}>Copy</button>
+            </div>
+            <pre class="mono text-body-sm m-0 w-full max-w-full overflow-x-auto rounded-lg bg-[color:var(--bg-muted)] p-3">{example.code}</pre>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <script>
+    const tabs = Array.from(document.querySelectorAll("[data-example-tab]"));
+    const panels = Array.from(document.querySelectorAll("[data-example-panel]"));
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        if (!(tab instanceof HTMLButtonElement)) return;
+        const id = tab.dataset.exampleTab;
+        if (!id) return;
+
+        tabs.forEach((item) => {
+          if (!(item instanceof HTMLButtonElement)) return;
+          const isActive = item.dataset.exampleTab === id;
+          item.setAttribute("aria-selected", String(isActive));
+          item.classList.toggle("btn-primary", isActive);
+          item.classList.toggle("btn-secondary", !isActive);
+        });
+
+        panels.forEach((panel) => {
+          if (!(panel instanceof HTMLElement)) return;
+          const show = panel.dataset.examplePanel === id;
+          panel.classList.toggle("hidden", !show);
+        });
+      });
+    });
+  </script>
+</section>

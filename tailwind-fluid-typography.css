@@ -1,0 +1,217 @@
+/* ============================================
+   TAILWIND CSS V4 - FLUID TYPOGRAPHY SYSTEM
+   ============================================ */
+
+@import "tailwindcss";
+
+/* Configuration Variables */
+@theme {
+  /* Viewport Range */
+  --fluid-min-width: 360;
+  --fluid-max-width: 1280;
+  
+  /* Base Font Sizes (in px) */
+  --fluid-min-base: 16;
+  --fluid-max-base: 18;
+  
+  /* Type Scale Ratios */
+  --fluid-min-ratio: 1.2;
+  --fluid-max-ratio: 1.25;
+  
+  /* ============================================
+     FLUID FONT SIZE CALCULATION
+     Uses CSS clamp() for responsive scaling
+     ============================================ */
+  
+  /* Calculate fluid sizes for each step in the type scale */
+  --font-size-xs: clamp(
+    calc((var(--fluid-min-base) / var(--fluid-min-ratio)) * 1px),
+    calc(0.875rem + 0.1vw),
+    calc((var(--fluid-max-base) / var(--fluid-max-ratio)) * 1px)
+  );
+  
+  --font-size-sm: clamp(
+    calc((var(--fluid-min-base) / 1.1) * 1px),
+    calc(0.875rem + 0.15vw),
+    calc((var(--fluid-max-base) / 1.1) * 1px)
+  );
+  
+  --font-size-base: clamp(
+    calc(var(--fluid-min-base) * 1px),
+    calc(1rem + 0.2vw),
+    calc(var(--fluid-max-base) * 1px)
+  );
+  
+  --font-size-lg: clamp(
+    calc(var(--fluid-min-base) * var(--fluid-min-ratio) * 1px),
+    calc(1rem + 0.5vw),
+    calc(var(--fluid-max-base) * var(--fluid-max-ratio) * 1px)
+  );
+  
+  --font-size-xl: clamp(
+    calc(var(--fluid-min-base) * var(--fluid-min-ratio) * var(--fluid-min-ratio) * 1px),
+    calc(1rem + 1vw),
+    calc(var(--fluid-max-base) * var(--fluid-max-ratio) * var(--fluid-max-ratio) * 1px)
+  );
+  
+  --font-size-2xl: clamp(
+    calc(var(--fluid-min-base) * var(--fluid-min-ratio) * var(--fluid-min-ratio) * var(--fluid-min-ratio) * 1px),
+    calc(1rem + 1.5vw),
+    calc(var(--fluid-max-base) * var(--fluid-max-ratio) * var(--fluid-max-ratio) * var(--fluid-max-ratio) * 1px)
+  );
+  
+  --font-size-3xl: clamp(
+    calc(var(--fluid-min-base) * var(--fluid-min-ratio) * var(--fluid-min-ratio) * var(--fluid-min-ratio) * var(--fluid-min-ratio) * 1px),
+    calc(1rem + 2vw),
+    calc(var(--fluid-max-base) * var(--fluid-max-ratio) * var(--fluid-max-ratio) * var(--fluid-max-ratio) * var(--fluid-max-ratio) * 1px)
+  );
+  
+  --font-size-4xl: clamp(
+    calc(var(--fluid-min-base) * var(--fluid-min-ratio) * var(--fluid-min-ratio) * var(--fluid-min-ratio) * var(--fluid-min-ratio) * var(--fluid-min-ratio) * 1px),
+    calc(1rem + 2.5vw),
+    calc(var(--fluid-max-base) * var(--fluid-max-ratio) * var(--fluid-max-ratio) * var(--fluid-max-ratio) * var(--fluid-max-ratio) * var(--fluid-max-ratio) * 1px)
+  );
+  
+  /* Line Heights for Better Readability */
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+}
+
+/* ============================================
+   SEMANTIC HEADING UTILITIES
+   Apply these to ANY element for consistent typography
+   ============================================ */
+
+@layer utilities {
+  /* Display Styles - Largest headings */
+  .text-display-lg {
+    font-size: var(--font-size-4xl);
+    line-height: var(--leading-tight);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  
+  .text-display {
+    font-size: var(--font-size-3xl);
+    line-height: var(--leading-tight);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  
+  /* Heading Styles - Reusable on any element */
+  .text-h1 {
+    font-size: var(--font-size-3xl);
+    line-height: var(--leading-tight);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  
+  .text-h2 {
+    font-size: var(--font-size-2xl);
+    line-height: var(--leading-snug);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  
+  .text-h3 {
+    font-size: var(--font-size-xl);
+    line-height: var(--leading-snug);
+    font-weight: 600;
+  }
+  
+  .text-h4 {
+    font-size: var(--font-size-lg);
+    line-height: var(--leading-normal);
+    font-weight: 600;
+  }
+  
+  .text-h5 {
+    font-size: var(--font-size-base);
+    line-height: var(--leading-normal);
+    font-weight: 600;
+  }
+  
+  .text-h6 {
+    font-size: var(--font-size-sm);
+    line-height: var(--leading-normal);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  /* Body Text Styles */
+  .text-body-lg {
+    font-size: var(--font-size-lg);
+    line-height: var(--leading-relaxed);
+  }
+  
+  .text-body {
+    font-size: var(--font-size-base);
+    line-height: var(--leading-relaxed);
+  }
+  
+  .text-body-sm {
+    font-size: var(--font-size-sm);
+    line-height: var(--leading-normal);
+  }
+  
+  .text-caption {
+    font-size: var(--font-size-xs);
+    line-height: var(--leading-normal);
+  }
+}
+
+/* ============================================
+   GLOBAL DEFAULTS (Optional)
+   Apply base styles to semantic HTML elements
+   ============================================ */
+
+@layer base {
+  html {
+    font-size: var(--font-size-base);
+    line-height: var(--leading-relaxed);
+  }
+  
+  /* Default heading styles - can be overridden with utility classes */
+  h1 {
+    font-size: var(--font-size-3xl);
+    line-height: var(--leading-tight);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  
+  h2 {
+    font-size: var(--font-size-2xl);
+    line-height: var(--leading-snug);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  
+  h3 {
+    font-size: var(--font-size-xl);
+    line-height: var(--leading-snug);
+    font-weight: 600;
+  }
+  
+  h4 {
+    font-size: var(--font-size-lg);
+    line-height: var(--leading-normal);
+    font-weight: 600;
+  }
+  
+  h5 {
+    font-size: var(--font-size-base);
+    line-height: var(--leading-normal);
+    font-weight: 600;
+  }
+  
+  h6 {
+    font-size: var(--font-size-sm);
+    line-height: var(--leading-normal);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}

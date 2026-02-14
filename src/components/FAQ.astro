@@ -1,0 +1,28 @@
+---
+const faqs = [
+  ["Does this work in all modern browsers?", "Yes. clamp(), custom properties, and modern selectors are widely supported in evergreen browsers."],
+  ["Will this hurt performance?", "No. This system is CSS-only and avoids runtime JavaScript for typography calculations."],
+  ["Can I override only one heading size?", "Yes. Override any variable or utility class while keeping the rest of the semantic scale."],
+  ["How do I pick a ratio?", "Start with 1.25 for balanced hierarchy, then increase for stronger contrast or reduce for denser UIs."],
+  ["Can I use h2 styling on an h1 element?", "Absolutely. Semantic utility classes are designed for exactly that level of flexibility."],
+  ["What viewport range should I set?", "A typical range is 360 to 1280. For larger displays, consider 320 to 1440 or 320 to 1920."],
+  ["Does this replace Tailwind text-* utilities?", "For type scale and semantics, yes. Keep Tailwind utilities for spacing, layout, and color."],
+  ["Can I use it in Astro, React, and Vue?", "Yes. The class names are framework-agnostic and work anywhere HTML classes are supported."]
+];
+---
+
+<section class="section-pad" id="faq">
+  <div class="container-shell reveal">
+    <h2 class="text-h2 m-0">FAQ</h2>
+    <div class="mt-5 grid gap-3">
+      {
+        faqs.map(([question, answer]) => (
+          <details class="card p-4">
+            <summary class="text-h4 cursor-pointer">{question}</summary>
+            <p class="text-body mt-3 mb-0 text-[color:var(--text-muted)]">{answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
